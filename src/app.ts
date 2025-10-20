@@ -1,8 +1,8 @@
-import express from "express";
 import cors from "cors";
+import express from "express";
 import morgan from "morgan";
-import { itemsRouter } from "./routes/items.routes";
 import { errorHandler } from "./middleware/error.middleware";
+import { itemsRouter } from "./routes/items.routes";
 
 export function createApp() {
   const app = express();

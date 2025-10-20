@@ -1,12 +1,14 @@
+import { Types } from "mongoose";
+
 export type ItemId = string;
 
 export interface Item {
-  id: ItemId;
+  id: Types.ObjectId; // alias for _id
   name: string;
   quantity: number;
-  unit?: string;      // e.g., "kg", "pcs", "L"
+  unit?: string;
   notes?: string;
-  purchased: boolean; // default false
-  createdAt: string;  // ISO string
-  updatedAt: string;  // ISO string
+  purchased: boolean;
+  createdAt: string;
+  updatedAt: string;
 }

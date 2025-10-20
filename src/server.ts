@@ -1,8 +1,11 @@
+import { env } from "./configs/env";
 import { createApp } from "./app";
+import { connectDB } from "./configs/db";
 
-const PORT = process.env.PORT ?? "3000";
+const PORT = env.PORT;
 const app = createApp();
-
-app.listen(PORT, () => {
-  console.log(`Shopping List API listening on http://localhost:${PORT}`);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Shopping List API listening on http://localhost:${PORT}`);
+  });
 });

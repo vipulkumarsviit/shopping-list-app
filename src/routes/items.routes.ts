@@ -1,10 +1,12 @@
 import { Router } from "express";
+import { env } from "../configs/env";
 import { ItemsController } from "../controllers/items.controller";
+import { InMemoryItemRepository, MongooseItemRepository } from "../repositories/items.repository";
 import { ItemsService } from "../services/items.service";
-import { InMemoryItemRepository } from "../repositories/items.repository";
 
-const repo = new InMemoryItemRepository();
-const service = new ItemsService(repo);
+const inMemoryItemRepository = new InMemoryItemRepository();
+const mongooseItemRepository = new MongooseItemRepository();
+const service = new ItemsService(env.MODE === 'in_memory' ? inMemoryItemRepository : mongooseItemRepository);
 const controller = new ItemsController(service);
 
 export const itemsRouter = Router();

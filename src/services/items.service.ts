@@ -1,7 +1,7 @@
-import { v4 as uuid } from "uuid";
+import { ObjectId } from "mongodb";
+import { CreateItemDTO, PurchasedDTO, UpdateItemDTO } from "../dto/items.dto";
 import { Item, ItemId } from "../models/item.model";
 import { ItemRepository } from "../repositories/items.repository";
-import { CreateItemDTO, UpdateItemDTO, PurchasedDTO } from "../dto/items.dto";
 
 export class ItemsService {
   constructor(private repo: ItemRepository) {}
@@ -17,7 +17,7 @@ export class ItemsService {
   async create(dto: CreateItemDTO): Promise<Item> {
     const now = new Date().toISOString();
     const item: Item = {
-      id: uuid(),
+      id: new ObjectId(),
       name: dto.name,
       quantity: dto.quantity,
       unit: dto.unit,
